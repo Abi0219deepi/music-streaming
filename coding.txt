@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify-Inspired Music App</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            background: linear-gradient(to right, #A8E063, #388E3C); /* Light green to dark green gradient */
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            padding: 20px;
+        }
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            text-align: center;
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+        }
+        h2 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #A8E063, #388E3C); /* green gradient */
+            padding: 10px 0;
+            z-index: 10;
+        }
+        h3 {
+            font-size: 20px;
+            font-weight: 400;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+        .grid-container {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 20px;
+        }
+        .song {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 12px;
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+        .song:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .song p {
+            margin: 6px 0;
+            color: #fff;
+        }
+        .song .title {
+            font-size: 15px;
+            font-weight: 600;
+        }
+        .song .details {
+            font-size: 12px;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+        .audio-player {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>🎵 Trendy Tamil Tunes 🎶</h2>
+        <h3>🎧 Play Your Favorite Songs 🎧</h3>
+        <div class="grid-container">
+            <div class="grid">
+
+                <!-- Song 1 -->
+                <div class="song" onclick="playSong('Apdi Podu')">
+                    <p class="title">Apdi Podu</p>
+                    <p class="details">Song Name: Apdi Podu<br>Movie Name: Ghilli</p>
+                </div>
+
+                <!-- Song 2 -->
+                <div class="song" onclick="playSong('Alaporan')">
+                    <p class="title">Alaporan Tamilzhan</p>
+                    <p class="details">Song Name: Alaporan Tamilzhan<br>Movie Name: Mersal</p>
+                </div> 
+
+                <!-- Song 3 -->
+                <div class="song" onclick="playSong('NeeDhaney')">
+                    <p class="title">Nee Dhaney</p>
+                    <p class="details">Song Name: Nee Dhaney<br>Movie Name: Mersal</p>
+                </div>
+
+                <!-- Song 4 -->
+                <div class="song" onclick="playSong('Venilavusaaral')">
+                    <p class="title">Venilavusaaral</p>
+                    <p class="details">Song Name: Venilavusaaral<br>Movie Name: Amaran</p>
+                </div>
+
+                <!-- Song 5 -->
+                <div class="song" onclick="playSong('Mehabooba')">
+                    <p class="title">Mehabooba</p>
+                    <p class="details">Song Name: Mehabooba<br>Movie Name: KGF</p>
+                </div>
+
+                <!-- Song 6 -->
+                <div class="song" onclick="playSong('AllIsWell')">
+                    <p class="title">All Is Well</p>
+                    <p class="details">Song Name: All Is Well<br>Movie Name: Nanban</p>
+                </div>
+
+                <!-- Song 7 -->
+                <div class="song" onclick="playSong('AskuLaska')">
+                    <p class="title">Asku Laska</p>
+                    <p class="details">Song Name: Asku Laska<br>Movie Name: Nanban</p>
+                </div>
+
+                <!-- Song 8 -->
+                <div class="song" onclick="playSong('GoldenSparow')">
+                    <p class="title">Golden Sparow</p>
+                    <p class="details">Song Name: Golden Sparow<br>Movie Name: NEEK</p>
+                </div>
+
+                <!-- Song 9 -->
+                <div class="song" onclick="playSong('Sawadeeka')">
+                    <p class="title">Sawadeeka</p>
+                    <p class="details">Song Name: Sawadeeka<br>Movie Name: Vidamuyarchi</p>
+                </div>
+
+                <!-- Song 10 -->
+                <div class="song" onclick="playSong('Peelings')">
+                    <p class="title">Peelings</p>
+                    <p class="details">Song Name: Peelings<br>Movie Name: Pushpa 2</p>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="audio-player">
+            <audio id="audio-player" controls>
+                <source id="audio-source" src="" type="audio/mp3">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+    </div>
+
+    <script>
+        function playSong(song) {
+            const audio = document.getElementById('audio-player');
+            const audioSource = document.getElementById('audio-source');
+
+            // Set the audio source to the selected song
+            const songFile = `${song}.mp3`;  // Assuming MP3 files are named like songname.mp3
+
+            // Set the audio source to the selected song file
+            audioSource.src = songFile;
+            audio.load();  // Load the new audio file
+            audio.play();  // Play the song
+        }
+    </script>
+
+</body>
+</html>
